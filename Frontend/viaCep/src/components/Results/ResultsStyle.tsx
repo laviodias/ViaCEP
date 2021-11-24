@@ -4,11 +4,11 @@ export const ResulstContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 80px;
+    margin: 80px 0;
     align-items: center;
 
     @media (max-width: 375px) {
-        padding-top: 40px;
+        padding: 40px;
     }
 
     a {

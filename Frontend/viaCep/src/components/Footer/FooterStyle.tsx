@@ -8,9 +8,7 @@ export const FooterArea = styled.footer`
     padding: 10px;
     color: #fff;
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    background-color: #029aff;
+    background-color:#029aff;
     gap: 10px;
 `
 

@@ -47,10 +47,11 @@ export const LastSearchArea = styled.section `
     flex-direction: column;
     align-items: center;
     gap: 40px;
-    margin-top: 40px;
-
+    padding-top: 40px;
+    
     @media (max-width: 768px) {
         gap: 20px;
+        padding-top: 20px;
     }
 `
 
