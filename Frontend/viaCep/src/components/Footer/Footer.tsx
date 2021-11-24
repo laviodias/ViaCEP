@@ -1,5 +1,5 @@
 import * as S from './FooterStyle'
-import eurekaLogo from '../../assets/eureka-labs-logo.webp'
+import eurekaLogo from '../../assets/eureka-labs-logo.png'
 import linkedin from '../../assets/linkedin.png'
 import github from '../../assets/github.png'
 import instagram from '../../assets/instagram.png'

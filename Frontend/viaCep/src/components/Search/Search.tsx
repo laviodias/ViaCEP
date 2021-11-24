@@ -2,6 +2,8 @@ import { useState } from 'react'
 import * as S from './SearchStyle'
 import Results from '../Results/Results'
 import InputMask from 'react-input-mask';
+import logo from '../../assets/logoBranca.png'
+import LastSearches from './LastSearches';
 import { insertDb, readDb } from '../../firebase/Firebase';
 
 interface IResult{
@@ -37,7 +39,7 @@ export default function Search() {
 
     async function checkDb(){
         const read = await readDb(cep)
-        
+
         if(read === "not found"){
             const data: IResult = await getCep(cep)
             insertDb(data)
@@ -46,15 +48,28 @@ export default function Search() {
             setData(read)
         }
     }
+
+    async function callbackLastSearches(cep: string){
+        setCep(cep)
+        const read = await readDb(cep)
+        setData(read)
+    }
+
+    function callbackResults(){
+        setData(undefined)
+        setCep('')
+    }
   
     return (
-        <S.ResultArea>
-            <p>Informe o CEP: </p>
+    <S.Container>
+        <S.SearchArea>
+            <img src={logo} alt="Logo" height={100} />
+            <p>Pesquise por CEPs de todo o Brasil</p>
 
             <InputMask 
                 mask="99999-999" 
                 type="text" 
-                placeholder="00000-000"
+                placeholder="Digite aqui o CEP"
                 value={cep} 
                 onChange={(e) => setCep(e.target.value)} 
                 onKeyPress={(e) => {
@@ -62,7 +77,7 @@ export default function Search() {
                         checkDb()
                     }
                 }}
-                style={{padding: 8, borderRadius: 4, border: '1px solid #ccc'}}
+                style={{padding: 16, width: 300, fontSize: 24, borderRadius: 4, border: '1px solid #ccc'}}
             />
 
             <S.Button 
@@ -70,10 +85,10 @@ export default function Search() {
                     checkDb()
                 }}
             >
-                Pesquisar
+                Buscar
             </S.Button>
-            
-            {data !== undefined && <Results result={data} />}   
-      </S.ResultArea>     
+        </S.SearchArea>    
+        {data !== undefined ? <Results result={data} callback={callbackResults}/> : <LastSearches callback={callbackLastSearches} /> }  
+    </S.Container>
     )
 }

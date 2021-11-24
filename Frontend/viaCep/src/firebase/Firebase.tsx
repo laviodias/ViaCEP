@@ -28,6 +28,7 @@ const db = getDatabase(app);
 
 export function insertDb(props: IResult){
     set(ref(db, props.cep), {
+        cep: props.cep,
         localidade: props.localidade,
         logradouro: props.logradouro,
         bairro: props.bairro,
@@ -43,6 +44,15 @@ export function insertDb(props: IResult){
 export async function readDb(cep: string){
     const dbRef = ref(db);
     const snapshot = await get(child(dbRef, cep));
+    if(snapshot.exists()){
+        return snapshot.val();
+    }
+    return "not found";
+}
+
+export async function getLastSearches(){
+    const dbRef = ref(db);
+    const snapshot = await get(dbRef);
     if(snapshot.exists()){
         return snapshot.val();
     }

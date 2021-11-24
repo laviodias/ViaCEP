@@ -10,7 +10,7 @@ export const FooterArea = styled.footer`
     width: 100%;
     position: absolute;
     bottom: 0;
-    background-color: rgba(0,0,0,0.6);
+    background-color: #029aff;
     gap: 10px;
 `
 
