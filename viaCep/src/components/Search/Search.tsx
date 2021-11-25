@@ -24,12 +24,7 @@ export default function Search() {
     const [cep, setCep] = useState('')
 
     async function getCep(cep: string) {
-        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`, {
-        headers : { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-        })
+        const response = await fetch(`https://via-cep.herokuapp.com/api/${cep}`)
         const data = await response.json()
 
         if(data.erro !== "true") 
