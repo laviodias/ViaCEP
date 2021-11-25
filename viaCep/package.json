@@ -6,7 +6,6 @@
     "build": "tsc && vite build",
     "serve": "vite preview"
   },
-  "proxy": "http://localhost:5000",
   "dependencies": {
     "@types/styled-components": "^5.1.15",
     "firebase": "^9.5.0",
