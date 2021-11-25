@@ -24,7 +24,7 @@ export default function Search() {
     const [cep, setCep] = useState('')
 
     async function getCep(cep: string) {
-        const response = await fetch(/* `/api/${cep}` */`https://viacep.com.br/ws/${cep}/json/`, {
+        const response = await fetch(`https://via-cep.herokuapp.com/api/${cep}`, {
         headers : { 
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -37,12 +37,24 @@ export default function Search() {
         return undefined
     }
 
+    async function testeDb(post: IResult){
+        fetch('/firebase/insert', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(post)
+        }).then(response => {
+            console.log(response)
+        })
+    }
+
     async function checkDb(){
         const read = await readDb(cep)
 
         if(read === "not found"){
             const data: IResult = await getCep(cep)
-            insertDb(data)
+            testeDb(data)
             setData(data)
         }else{
             setData(read)

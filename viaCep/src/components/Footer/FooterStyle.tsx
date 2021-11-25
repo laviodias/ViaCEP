@@ -10,6 +10,7 @@ export const FooterArea = styled.footer`
     width: 100%;
     background-color:#029aff;
     gap: 10px;
+    font-family: 'Raleway', sans-serif;
 `
 
 export const SocialMedias = styled.div`
