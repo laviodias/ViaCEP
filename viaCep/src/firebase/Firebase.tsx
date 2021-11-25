@@ -54,7 +54,8 @@ export async function getLastSearches(){
     const dbRef = ref(db);
     const snapshot = await get(dbRef);
     if(snapshot.exists()){
-        return snapshot.val();
+        const returning: IResult[] = snapshot.val();
+        return returning;
     }
     return "not found";
 }

@@ -20,11 +20,11 @@ interface IProps {
 }
 
 export default function LastSearches({ callback }: IProps) {
-    const [lastSearches, setLastSearches] = useState([])
+    const [lastSearches, setLastSearches] = useState<IResult[]>([])
 
     async function getLastSearchesFromFirebase() {
         const lastSearches = await getLastSearches()
-        const lastSearchesArray = Object.values(lastSearches).splice(0, 3)
+        const lastSearchesArray: IResult[] = Object.values(lastSearches).splice(0, 3)
         
         if(lastSearchesArray.length === 3) {
             setLastSearches(lastSearchesArray)
